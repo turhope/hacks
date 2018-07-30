@@ -1,0 +1,56 @@
+arch 65816
+hirom
+
+
+
+
+;$C2/1C60 BD C6 04    LDA $04C6,x[$00:04C6]   A:0000 X:0000 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZC HC:0014 VC:051 FC:03 I:00
+;$C2/1C63 DD CB 04    CMP $04CB,x[$00:04CB]   A:0006 X:0000 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIzC HC:0046 VC:051 FC:03 I:00
+;$C2/1C66 F0 19       BEQ $19    [$1C81]      A:0006 X:0000 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZC HC:0078 VC:051 FC:03 I:00
+
+
+org $c21c60
+
+; saving -- update active char
+lda $04c6,x
+sta $04cb,x
+bra $19
+
+
+
+
+
+
+
+
+;$C0/7680 B9 C0 F8    LDA $F8C0,y[$00:F8C6]   A:0006 X:0000 Y:0006 D:0000 DB:00 S:01DC P:envMXdIzc HC:0594 VC:245 FC:35 I:00
+;$C0/7683 9D C6 04    STA $04C6,x[$00:04C6]   A:0013 X:0000 Y:0006 D:0000 DB:00 S:01DC P:envMXdIzc HC:0626 VC:245 FC:35 I:00
+
+
+org $c07686
+
+
+; switch chars -- allow saving
+sta $04cb,x
+phx
+
+
+
+; normal
+lda #$02
+sta $12ae
+
+lda #$fd
+sta $12ad
+
+lda $04d2,x
+bne +
+
+lda #$e3
+sta $12ad
+
++
+rep 2 : nop
+
+
+warnpc $c076a0

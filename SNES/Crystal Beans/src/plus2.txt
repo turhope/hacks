@@ -1,0 +1,12 @@
+arch 65816
+hirom
+
+
+;$C0/FB6F 22 C8 4E C2 JSL $C24EC8[$C2:4EC8]   A:000A X:0000 Y:0018 D:0000 DB:00 S:01F0 P:envMXdIZc HC:0194 VC:008 FC:11 I:00
+;$C0/FB73 D0 07       BNE $07    [$FB7C]      A:0013 X:0000 Y:0018 D:0000 DB:00 S:01F0 P:envMXdIzC HC:0420 VC:009 FC:11 I:00
+
+
+org $c0fb73
+
+; always load game
+bne $00
