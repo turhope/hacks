@@ -43,3 +43,20 @@ org $c07b63
 
 ; always allow input
 bne $00
+
+
+
+
+
+
+
+
+
+;$C0/7BF8 AE F1 15    LDX $15F1  [$00:15F1]   A:0005 X:000A Y:00C5 D:0000 DB:00 S:01F6 P:envMXdIZC HC:0990 VC:243 FC:39 I:00
+;$C0/7BFB BD 01 00    LDA $0001,x[$00:0001]   A:0005 X:0000 Y:00C5 D:0000 DB:00 S:01F6 P:envMXdIZC HC:1022 VC:243 FC:39 I:00
+
+
+org $c07bfb
+
+; 1-time joypad input (1,2,3)
+lda $0009,x
