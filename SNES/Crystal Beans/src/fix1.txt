@@ -1,0 +1,11 @@
+arch 65816
+hirom
+
+
+;$97/CFAC A9 00 00    LDA #$0000              A:0064 X:0014 Y:016A D:0000 DB:97 S:01EB P:envmxdIZC HC:1296 VC:185 FC:01 I:00
+;$97/CFAF 97 32       STA [$32],y[$7F:A16A]   A:0000 X:0014 Y:016A D:0000 DB:97 S:01EB P:envmxdIZC HC:1374 VC:185 FC:01 I:00
+
+org $97cfac
+
+; window transparency
+lda #$00ff
