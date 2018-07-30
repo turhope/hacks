@@ -5,7 +5,30 @@ hirom
 ;$97/CFAC A9 00 00    LDA #$0000              A:0064 X:0014 Y:016A D:0000 DB:97 S:01EB P:envmxdIZC HC:1296 VC:185 FC:01 I:00
 ;$97/CFAF 97 32       STA [$32],y[$7F:A16A]   A:0000 X:0014 Y:016A D:0000 DB:97 S:01EB P:envmxdIZC HC:1374 VC:185 FC:01 I:00
 
+
 org $97cfac
 
-; window transparency
+; intro - window transparency  (king's room)
 lda #$00ff
+
+
+
+
+
+
+
+
+;$97/D0A8 A9 00       LDA #$00                A:4B4B X:0005 Y:004B D:0000 DB:97 S:01EA P:enVMXdIzc HC:0234 VC:140 FC:06 I:00
+;$97/D0AA 9F E9 FF 7F STA $7FFFE9,x[$7F:FFEE] A:4B00 X:0005 Y:004B D:0000 DB:97 S:01EA P:enVMXdIZc HC:0252 VC:140 FC:06 I:00
+;$97/D0AE A9 80       LDA #$80                A:4B00 X:0005 Y:004B D:0000 DB:97 S:01EA P:enVMXdIZc HC:0290 VC:140 FC:06 I:00
+;$97/D0B0 9F F4 FF 7F STA $7FFFF4,x[$7F:FFF9] A:4B80 X:0005 Y:004B D:0000 DB:97 S:01EA P:eNVMXdIzc HC:0308 VC:140 FC:06 I:00
+
+
+org $97d0a8
+
+; intro - textbox transparency
+lda #$ff
+sta $7fffe9,x
+
+lda #$c0
+sta $7ffff4,x
