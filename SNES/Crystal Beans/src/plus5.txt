@@ -1,0 +1,58 @@
+arch 65816
+hirom
+
+
+
+;$C0/81E8 AF 48 6C C8 LDA $C86C48[$C8:6C48]   A:6C4C X:0000 Y:0000 D:0000 DB:00 S:01FF P:envmXdIzc HC:0466 VC:140 FC:58 I:00
+;$C0/81EC 4A          LSR A                   A:0A00 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envmXdIzc HC:0508 VC:140 FC:58 I:00
+;$C0/81ED 85 4A       STA $4A    [$00:004A]   A:0500 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envmXdIzc HC:0526 VC:140 FC:58 I:00
+;$C0/81EF 22 D5 23 C2 JSL $C223D5[$C2:23D5]   A:0500 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envmXdIzc HC:0600 VC:140 FC:58 I:00
+
+
+org $c081ef
+
+jsl upload_gui
+
+
+
+
+
+
+
+org $d90000
+
+bowman_bin:
+incbin bowman.bin
+
+
+
+upload_gui:
+jsl $c223d5
+
+
+
+
+
+
+; upload new bowman bitmap
+
+lda.w #$8280/2
+sta $2116
+
+lda.w #$0050
+sta $4305
+
+lda.w #bowman_bin
+sta $4302
+
+
+sep #$20
+
+lda.b #bowman_bin>>16
+sta $4304
+
+lda.b #$01
+sta $420b
+
+rep #$20
+rtl
