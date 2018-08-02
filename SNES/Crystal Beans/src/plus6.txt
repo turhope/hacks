@@ -1,0 +1,78 @@
+arch 65816
+hirom
+
+
+
+;$C2/395E B7 2F       LDA [$2F],y[$C3:1863]   A:0254 X:0000 Y:001E D:0000 DB:00 S:01F5 P:envMXdIzC HC:0712 VC:058 FC:46 I:00
+;$C2/3960 8D AD 12    STA $12AD  [$00:12AD]   A:02E4 X:0000 Y:001E D:0000 DB:00 S:01F5 P:eNvMXdIzC HC:0760 VC:058 FC:46 I:00
+;$C2/3963 C8          INY                     A:02E4 X:0000 Y:001E D:0000 DB:00 S:01F5 P:eNvMXdIzC HC:0792 VC:058 FC:46 I:00
+;$C2/3964 B7 2F       LDA [$2F],y[$C3:1864]   A:02E4 X:0000 Y:001F D:0000 DB:00 S:01F5 P:envMXdIzC HC:0834 VC:058 FC:46 I:00
+;$C2/3966 8D AE 12    STA $12AE  [$00:12AE]   A:0202 X:0000 Y:001F D:0000 DB:00 S:01F5 P:envMXdIzC HC:0882 VC:058 FC:46 I:00
+
+
+org $c2395e
+
+jsl exit_room
+jmp $3969
+
+
+
+
+
+
+org $d900c0
+
+exit_room:
+cpx #$00
+beq +
+
+
+cpx #$02
+bne +++
+
+
+lda $12af
+cmp #$80
+beq +++++
+
+lda $12b1
+cmp #$80
+beq +++++
+
+bra +
+
+
+
+
++++
+lda $12af
+cmp #$80
+beq +++++
+cmp #$82
+beq +++++
+
+
+lda $12b1
+cmp #$80
+beq +++++
+cmp #$82
+beq +++++
+
+
+
+
+
++
+lda [$2f],y
+sta $12ad
+iny
+
+lda [$2f],y
+sta $12ae
+
+
++++++
+rtl
+
+
+warnpc $d90100

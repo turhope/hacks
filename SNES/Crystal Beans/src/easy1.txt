@@ -1,0 +1,18 @@
+arch 65816
+hirom
+
+
+;$C2/5707 C9 15       CMP #$15                A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E0 P:envMXdIzc HC:0836 VC:038 FC:11 I:00
+;$C2/5709 90 02       BCC $02    [$570D]      A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E0 P:envMXdIzC HC:0854 VC:038 FC:11 I:00
+;$C2/570B A9 14       LDA #$14                A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E0 P:envMXdIzC HC:0872 VC:038 FC:11 I:00
+;$C2/570D 60          RTS                     A:0114 X:0000 Y:0008 D:0000 DB:00 S:01E0 P:envMXdIzC HC:0890 VC:038 FC:11 I:00
+
+
+org $c25707
+
+; max stat limit
+cmp #$7f
+bcc $02
+
+lda #$7f
+rts

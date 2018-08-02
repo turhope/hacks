@@ -1,0 +1,15 @@
+arch 65816
+hirom
+
+
+;$C0/1E43 B1 E8       LDA ($E8),y[$00:04D7]   A:0009 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZc HC:0888 VC:122 FC:59 I:00
+;$C0/1E45 69 01       ADC #$01                A:0000 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZc HC:0930 VC:122 FC:59 I:00
+;$C0/1E47 91 E8       STA ($E8),y[$00:04D7]   A:0001 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIzc HC:0964 VC:122 FC:59 I:00
+;$C0/1E49 60          RTS                     A:0001 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIzc HC:1012 VC:122 FC:59 I:00
+
+
+org $c01e45
+
+; 2x gem power
+adc #$02
+

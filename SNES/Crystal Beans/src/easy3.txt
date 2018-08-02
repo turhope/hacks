@@ -1,0 +1,77 @@
+arch 65816
+hirom
+
+
+;$C0/1B9B FE EF 04    INC $04EF,x[$00:04EF]   A:0000 X:0000 Y:0008 D:0000 DB:00 S:01F2 P:envMXdIZc HC:0082 VC:102 FC:03 I:00
+;$C0/1B9E 22 4A 17 C2 JSL $C2174A[$C2:174A]   A:0000 X:0000 Y:0008 D:0000 DB:00 S:01F2 P:envMXdIzc HC:0134 VC:102 FC:03 I:00
+
+
+org $c01b9b
+
+inc
+inc
+nop
+
+jsl easy3a
+
+
+
+
+
+
+
+;$C0/1BBB FE F0 04    INC $04F0,x[$00:04F0]   A:0000 X:0000 Y:0006 D:0000 DB:00 S:01F2 P:envMXdIZc HC:0302 VC:083 FC:21 I:00
+;$C0/1BBE 22 51 17 C2 JSL $C21751[$C2:1751]   A:0000 X:0000 Y:0006 D:0000 DB:00 S:01F2 P:envMXdIzc HC:0354 VC:083 FC:21 I:00
+
+
+org $c01bbb
+
+inc
+inc
+nop
+
+jsl easy3b
+
+
+
+
+
+
+
+
+
+org $d90080
+
+easy3a:
+cmp #$09
+bcc +
+
+lda #$09
+
++
+sta $04ef,x
+
+
+jsl $c2174a
+rtl
+
+
+
+
+
+
+easy3b:
+cmp #$09
+bcc +
+
+lda #$09
+
++
+sta $04f0,x
+
+
+jsl $c21751
+rtl
+
+
+warnpc $d900c0
