@@ -19,6 +19,7 @@ ldx $15f0
 lda #$81
 sta $15d9
 
+
 ; timer
 stz $15da
 jmp $7c32
@@ -39,12 +40,10 @@ warnpc $c07c32
 ;$C0/7B65 20 97 7B    JSR $7B97  [$C0:7B97]   A:0005 X:000A Y:00C5 D:0000 DB:00 S:01FC P:envMXdIZC HC:0808 VC:243 FC:05 I:00
 
 
-org $c07b63
+org $c07b5e
 
-; always allow input
-bne $00
-
-
+jsl world_map_move
+nop
 
 
 
@@ -52,11 +51,62 @@ bne $00
 
 
 
-;$C0/7BF8 AE F1 15    LDX $15F1  [$00:15F1]   A:0005 X:000A Y:00C5 D:0000 DB:00 S:01F6 P:envMXdIZC HC:0990 VC:243 FC:39 I:00
-;$C0/7BFB BD 01 00    LDA $0001,x[$00:0001]   A:0005 X:0000 Y:00C5 D:0000 DB:00 S:01F6 P:envMXdIZC HC:1022 VC:243 FC:39 I:00
 
 
-org $c07bfb
 
-; 1-time joypad input (1,2,3)
+org $d90140
+
+world_map_move:
+
+; 05 = text done
+lda $15d9
+cmp #$05
+bne +
+
+
+-
+
+; pass - Z flag
+lda #$00
+rtl
+
+
+
+
++
+
+; 81 = text clear
+; 03 = text printing
+
+cmp #$81
+bne +
+
+; check timer
+lda $15da
+cmp #$02
+bcc +++
+
+
+
+
++
+
+; check 1-time input
+ldx $15f1
+
 lda $0009,x
+bit #$03
+bne -
+
+
+
+
++++
+
+; fail - NZ flag
+lda #$01
+rtl
+
+
+
+warnpc $d90180

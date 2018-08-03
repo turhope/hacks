@@ -1,0 +1,95 @@
+arch 65816
+hirom
+
+
+;$C4/9BD6 9C 41 1D    STZ $1D41  [$00:1D41]   A:0400 X:0006 Y:0000 D:0000 DB:00 S:01F1 P:envmxdIZC HC:0322 VC:244 FC:07 I:00
+;$C4/9BD9 9C 3D 1D    STZ $1D3D  [$00:1D3D]   A:0400 X:0006 Y:0000 D:0000 DB:00 S:01F1 P:envmxdIZC HC:0362 VC:244 FC:07 I:00
+;$C4/9BDC 9C 49 1D    STZ $1D49  [$00:1D49]   A:0400 X:0006 Y:0000 D:0000 DB:00 S:01F1 P:envmxdIZC HC:0402 VC:244 FC:07 I:00
+;$C4/9BDF 20 18 9D    JSR $9D18  [$C4:9D18]   A:0400 X:0006 Y:0000 D:0000 DB:00 S:01F1 P:envmxdIZC HC:0442 VC:244 FC:07 I:00
+
+
+org $c49bd6
+
+jsl english_world_map
+nop
+nop
+
+
+
+
+
+
+org $d90100
+
+english_world_map:
+
+; zero indent
+stz $1d41
+stz $1d3d
+
+
+
+
+
+; fast indent
+sep #$20
+
+
+; $20 width
+lda $c484bb
+sta $1d49
+
+
+
+-
+
+; check whitespace
+lda [$82],y
+cmp #$20
+bne +
+
+; bump ptr
+iny
+
+
+
+
+; add width
+lda $1d41
+clc
+adc $1d49
+
+
+; overflow
+cmp #$10
+bcc +++
+
+sec
+sbc #$10
+
+inc $1d3d
+
+
+
+
++++
+sta $1d41
+bra -
+
+
+
+
+
+
++
+sep #$30
+dey
+sty $15da
+
+
+rep #$30
+rtl
+
+
+
+warnpc $d90140
