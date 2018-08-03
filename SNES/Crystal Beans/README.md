@@ -6,10 +6,10 @@ Collection of hacks for: Crystal Beans from Dungeon Explorer (Japan).sfc
 Vanilla bugfixes
 - fix1: transparency line on column 0 (intro: textbox, king's spotlight)
 
-Gameplay tweaks
+Engine tweaks
 - plus1: saving regardless of switching characters
 - plus2: loading regardless of character chosen
-- plus3: default text speed (1 = fast, 3 = medium, 5 = normal)
+- plus3: change text speed when printing (L trigger = faster, R trigger = slower) [^1]
 - plus4: move around world map while text still printing [^1]
 - plus5: bow-m to bowman graphic [^1]
 - plus6: party leader chooses next room, not last person [^1]
