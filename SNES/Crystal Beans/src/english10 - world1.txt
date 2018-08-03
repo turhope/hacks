@@ -29,10 +29,9 @@ stz $1d3d
 
 
 
-
-
 ; fast indent
 sep #$20
+
 
 
 ; $20 width
@@ -41,16 +40,17 @@ sta $1d49
 
 
 
--
-
-; check whitespace
+; no indent
 lda [$82],y
 cmp #$20
-bne +
+bne +++
+
+
+
+-
 
 ; bump ptr
 iny
-
 
 
 
@@ -62,7 +62,7 @@ adc $1d49
 
 ; overflow
 cmp #$10
-bcc +++
+bcc +
 
 sec
 sbc #$10
@@ -72,21 +72,23 @@ inc $1d3d
 
 
 
-+++
-sta $1d41
-bra -
-
-
-
-
-
-
 +
+sta $1d41
+
+
+; check whitespace
+lda [$82],y
+cmp #$20
+beq -
+
+
+
 sep #$30
 dey
 sty $15da
 
 
++++
 rep #$30
 rtl
 
