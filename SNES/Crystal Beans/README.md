@@ -19,7 +19,7 @@ Gameplay cheats
 - easy2: gems give 2x stat bonus
 - easy3: pick up 2x potions (limit 9) [^1]
 
-English 1.0 (Hiei- / Neige) addendum [^2]
+English 1.1 (Hiei- / Neige) addendum [^2]
 - text1: typos (ressurection ==> resurrection, kingom ==> kingdom)
 - world1: fast auto-indent text printing [^1]
 
