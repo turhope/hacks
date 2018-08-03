@@ -2,14 +2,155 @@ arch 65816
 hirom
 
 
-;$C0/1E43 B1 E8       LDA ($E8),y[$00:04D7]   A:0009 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZc HC:0888 VC:122 FC:59 I:00
-;$C0/1E45 69 01       ADC #$01                A:0000 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIZc HC:0930 VC:122 FC:59 I:00
-;$C0/1E47 91 E8       STA ($E8),y[$00:04D7]   A:0001 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIzc HC:0964 VC:122 FC:59 I:00
-;$C0/1E49 60          RTS                     A:0001 X:0016 Y:0000 D:0000 DB:00 S:01F3 P:envMXdIzc HC:1012 VC:122 FC:59 I:00
+;$C2/568B 18          CLC                     A:0100 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzC HC:0536 VC:038 FC:11 I:00
+;$C2/568C BD D7 04    LDA $04D7,x[$00:04D7]   A:0100 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0594 VC:038 FC:11 I:00
+;$C2/568F 79 CE A3    ADC $A3CE,y[$00:A3D6]   A:0140 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0626 VC:038 FC:11 I:00
+;$C2/5692 18          CLC                     A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0658 VC:038 FC:11 I:00
+;$C2/5693 7D E3 04    ADC $04E3,x[$00:04E3]   A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0676 VC:038 FC:11 I:00
+;$C2/5696 48          PHA                     A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0708 VC:038 FC:11 I:00
+;$C2/5697 68          PLA                     A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E1 P:envMXdIzc HC:0734 VC:038 FC:11 I:00
+;$C2/5698 90 02       BCC $02    [$569C]      A:0147 X:0000 Y:0008 D:0000 DB:00 S:01E2 P:envMXdIzc HC:0766 VC:038 FC:11 I:00
 
 
-org $c01e45
+org $c2568b
 
-; 2x gem power
-adc #$02
+; agility
 
+; 2x gems
+lda $04d7,x
+asl
+
+; base
+clc
+adc $a3ce,y
+
+; bonus
+clc
+adc $04e3,x
+
+nop
+bcc $02
+
+
+warnpc $c2569a
+
+
+
+
+
+
+
+;$C2/566B 18          CLC                     A:0101 X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0778 VC:040 FC:11 I:00
+;$C2/566C BD D8 04    LDA $04D8,x[$00:04D8]   A:0101 X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0796 VC:040 FC:11 I:00
+;$C2/566F 7D E4 04    ADC $04E4,x[$00:04E4]   A:0108 X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0828 VC:040 FC:11 I:00
+;$C2/5672 18          CLC                     A:0108 X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0860 VC:040 FC:11 I:00
+;$C2/5673 79 52 A4    ADC $A452,y[$00:A45A]   A:0108 X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0878 VC:040 FC:11 I:00
+;$C2/5676 48          PHA                     A:010C X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0910 VC:040 FC:11 I:00
+;$C2/5677 68          PLA                     A:010C X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0936 VC:040 FC:11 I:00
+;$C2/5678 90 02       BCC $02    [$567C]      A:010C X:0000 Y:0008 D:0000 DB:00 S:01E5 P:envMXdIzc HC:0968 VC:040 FC:11 I:00
+
+
+org $c2566b
+
+; attack
+
+; 2x gems
+lda $04d8,x
+asl
+
+; base
+clc
+adc $a452,y
+
+; bonus
+clc
+adc $04e4,x
+
+nop
+bcc $02
+
+
+warnpc $c2567a
+
+
+
+
+
+
+
+
+
+
+
+;$C2/56BB 18          CLC                     A:0000 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzC HC:0258 VC:123 FC:30 I:00
+;$C2/56BC BD DD 04    LDA $04DD,x[$00:04DD]   A:0000 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzc HC:0276 VC:123 FC:30 I:00
+;$C2/56BF 79 94 A4    ADC $A494,y[$00:A49C]   A:0000 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIZc HC:0308 VC:123 FC:30 I:00
+;$C2/56C2 18          CLC                     A:0004 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzc HC:0340 VC:123 FC:30 I:00
+;$C2/56C3 7D E9 04    ADC $04E9,x[$00:04E9]   A:0004 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzc HC:0358 VC:123 FC:30 I:00
+;$C2/56C6 48          PHA                     A:0004 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzc HC:0390 VC:123 FC:30 I:00
+;$C2/56C7 68          PLA                     A:0004 X:0000 Y:0008 D:0000 DB:00 S:01E9 P:envMXdIzc HC:0416 VC:123 FC:30 I:00
+;$C2/56C8 90 02       BCC $02    [$56CC]      A:0004 X:0000 Y:0008 D:0000 DB:00 S:01EA P:envMXdIzc HC:0448 VC:123 FC:30 I:00
+
+
+org $c256bb
+
+; strength
+
+; 2x gems
+lda $04dd,x
+asl
+
+; base
+clc
+adc $a494,y
+
+; bonus
+clc
+adc $04e9,x
+
+nop
+bcc $02
+
+
+warnpc $c256ca
+
+
+
+
+
+
+
+
+
+
+;$C2/56F2 18          CLC                     A:0100 X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0794 VC:176 FC:30 I:00
+;$C2/56F3 BD DE 04    LDA $04DE,x[$00:04DE]   A:0100 X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0812 VC:176 FC:30 I:00
+;$C2/56F6 79 C0 A4    ADC $A4C0,y[$00:A4C8]   A:0100 X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIZc HC:0844 VC:176 FC:30 I:00
+;$C2/56F9 18          CLC                     A:010D X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0876 VC:176 FC:30 I:00
+;$C2/56FA 7D EA 04    ADC $04EA,x[$00:04EA]   A:010D X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0894 VC:176 FC:30 I:00
+;$C2/56FD 48          PHA                     A:010D X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0926 VC:176 FC:30 I:00
+;$C2/56FE 68          PLA                     A:010D X:0000 Y:0008 D:0000 DB:00 S:01E3 P:envMXdIzc HC:0952 VC:176 FC:30 I:00
+;$C2/56FF 90 02       BCC $02    [$5703]      A:010D X:0000 Y:0008 D:0000 DB:00 S:01E4 P:envMXdIzc HC:0984 VC:176 FC:30 I:00
+
+
+org $c256f2
+
+; intelligence
+
+; 2x gems
+lda $04de,x
+asl
+
+; base
+clc
+adc $a4c0,y
+
+; bonus
+clc
+adc $04ea,x
+
+nop
+bcc $02
+
+
+warnpc $c25701
