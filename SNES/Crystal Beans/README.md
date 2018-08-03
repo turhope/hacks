@@ -19,11 +19,11 @@ Gameplay cheats
 - easy2: gems give 2x stat bonus
 - easy3: pick up 2x potions (limit 9) [^1]
 
-English 1.0 (hiei- / Eien) addendum [^2]
+English 1.0 (Hiei- / Neige) addendum [^2]
 - text1: typos (ressurection ==> resurrection, kingom ==> kingdom)
 - world1: fast auto-indent text printing [^1]
 
 
 Patches can be applied in any order
 - ^1 = requires 2MB ROM expansion patch (expand.ips) if not using English translation
-- ^2 = http://www.romhacking.net/translations/1710/
+- ^2 = https://www.romhacking.net/translations/1710/
