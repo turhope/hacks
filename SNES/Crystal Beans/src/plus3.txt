@@ -8,6 +8,144 @@ hirom
 ;$C2/25E2 B0 13       BCS $13    [$25F7]      A:0001 X:0000 Y:0000 D:0000 DB:00 S:01E6 P:eNvMXdIzc HC:1070 VC:243 FC:16 I:00
 
 
-org $c225e0
+org $c225dd
 
-cmp #$01
+jsl text_speed
+nop
+
+
+
+
+
+
+;$C2/2575 AD 7E 14    LDA $147E  [$00:147E]   A:0400 X:000A Y:0003 D:0000 DB:00 S:01EB P:envMXdiZc HC:0724 VC:243 FC:06 I:00
+;$C2/2578 D0 00       BNE $00    [$257A]      A:0400 X:000A Y:0003 D:0000 DB:00 S:01EB P:envMXdiZc HC:0756 VC:243 FC:06 I:00
+
+
+org $c22575
+
+jsl text_speed_joypad
+nop
+
+
+
+
+
+
+;$C0/802A A5 10       LDA $10    [$00:0010]   A:0000 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envMxdIZc HC:1328 VC:238 FC:26 I:00
+;$C0/802C 85 54       STA $54    [$00:0054]   A:0000 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envMxdIZc HC:1354 VC:238 FC:26 I:00
+;$C0/802E 20 00 00    JSR $0000  [$C0:0000]   A:0000 X:0000 Y:0000 D:0000 DB:00 S:01FF P:envMxdIZc HC:0016 VC:239 FC:26 I:00
+
+
+org $c0802a
+
+jsl text_speed_init
+
+
+
+
+
+
+
+
+org $d90180
+
+text_speed:
+lda $1292
+cmp $2067ff
+rtl
+
+
+
+
+
+text_speed_joypad:
+
+phx
+
+
+; check 1-time input
+ldx $15f1
+
+
+; L trigger
+lda $0008,x
+bit #$20
+beq +
+
+lda $2067ff
+dec
+sta $2067ff
+
+bra +++
+
+
+
++
+; R trigger
+bit #$10
+beq +++
+
+lda $2067ff
+inc
+sta $2067ff
+
+
+
++++
+plx
+
+
+
+
+
+
+
+; default speed
+lda $2067ff
+bne +
+
+lda #$01
+bra +++
+
+
++
+cmp #$06
+bcc +++
+
+lda #$05
+
+
++++
+sta $2067ff
+rtl
+
+
+
+
+
+
+
+text_speed_init:
+
+; 1-5 text speed
+lda $2067ff
+beq +
+
+cmp #$06
+bcc +++
+
+
++
+lda #$03
+sta $2067ff
+
+
++++
+lda $10
+sta $54
+rtl
+
+
+
+warnpc $d90200
