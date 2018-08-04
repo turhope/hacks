@@ -63,39 +63,16 @@ text_speed_joypad:
 
 phx
 
+lda $0008
+jsr text_speed_joypad_jsr1
 
-; check 1-time input
-ldx $15f1
+lda $000a
+jsr text_speed_joypad_jsr1
 
+lda $000c
+jsr text_speed_joypad_jsr1
 
-; L trigger
-lda $0008,x
-bit #$20
-beq +
-
-lda $2067ff
-dec
-sta $2067ff
-
-bra +++
-
-
-
-+
-; R trigger
-bit #$10
-beq +++
-
-lda $2067ff
-inc
-sta $2067ff
-
-
-
-+++
 plx
-
-
 
 
 
@@ -119,6 +96,45 @@ lda #$05
 +++
 sta $2067ff
 rtl
+
+
+
+
+
+
+
+
+
+
+
+text_speed_joypad_jsr1:
+
+; L trigger
+bit #$20
+beq +
+
+lda $2067ff
+dec
+sta $2067ff
+
+rts
+
+
+
++
+
+; R trigger
+bit #$10
+beq +
+
+lda $2067ff
+inc
+sta $2067ff
+
+
++
+rts
+
 
 
 
